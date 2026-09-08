@@ -2,8 +2,8 @@
   <Configurations>
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="Engine/Engine.vcxproj" />
-  <Project Path="Sandbox/Sandbox.vcxproj">
+  <Project Path="Engine/Engine.vcxproj" Id="aeba3d1e-c446-4a17-862b-24b257573bd1" />
+  <Project Path="Sandbox/Sandbox.vcxproj" Id="67047540-2746-4f84-b0f2-f5ef816f05a4">
     <BuildDependency Project="Engine/Engine.vcxproj" />
   </Project>
 </Solution>
