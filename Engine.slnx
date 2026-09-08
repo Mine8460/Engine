@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="Engine/Engine.vcxproj" />
+  <Project Path="Sandbox/Sandbox.vcxproj">
+    <BuildDependency Project="Engine/Engine.vcxproj" />
+  </Project>
+</Solution>
