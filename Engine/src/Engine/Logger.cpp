@@ -1,6 +1,5 @@
+#include <Enpch.h>
 #include "Logger.h"
-
-#include <stdio.h>
 
 namespace Engine
 {

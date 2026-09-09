@@ -5,7 +5,7 @@
       <UniqueIdentifier>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Events">
-      <UniqueIdentifier>{d343b2e2-b653-4c4f-a05b-5f295fefa684}</UniqueIdentifier>
+      <UniqueIdentifier>{5FAFB439-CB6F-3070-94AA-79ED002A754C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -19,13 +19,22 @@
     <ClInclude Include="src\Engine\EntryPoint.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Events\ApplicationEvent.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\Event.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\KeyEvent.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\MouseEvent.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Engine\Logger.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Engine\Events\Event.h" />
-    <ClInclude Include="src\Engine\Events\KeyEvent.h" />
-    <ClInclude Include="src\Engine\Events\MouseEvent.h" />
+    <ClInclude Include="src\Enpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Application.cpp">
@@ -34,5 +43,6 @@
     <ClCompile Include="src\Engine\Logger.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="src\Enpch.cpp" />
   </ItemGroup>
 </Project>
