@@ -16,5 +16,6 @@ public:
 
 Engine::Application* Engine::CreateApplication()
 {
+	ENGINE_CORE_INFO("Sandbox Loaded");
 	return new Sandbox;
 }
