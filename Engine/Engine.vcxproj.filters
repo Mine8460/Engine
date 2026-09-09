@@ -35,6 +35,8 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="src\Enpch.h" />
+    <ClInclude Include="src\Engine\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Application.cpp">
@@ -44,5 +46,6 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="src\Enpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>
