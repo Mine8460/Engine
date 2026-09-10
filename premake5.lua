@@ -106,6 +106,7 @@ project "Sandbox"
 	{
 		"Engine/vendor/spdlog/include",
 		"Engine/src",
+		"Engine/vendor",
 		"%{IncludeDir.GLM}",
 	}
 

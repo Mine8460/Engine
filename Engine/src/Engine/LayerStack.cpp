@@ -5,7 +5,6 @@ namespace Engine
 {
 	LayerStack::LayerStack()
 	{
-		m_LayersInsert = m_Layers.begin();
 	}
 	LayerStack::~LayerStack()
 	{
@@ -16,7 +15,8 @@ namespace Engine
 	}
 	void LayerStack::PushLayer(Layer* _layer)
 	{
-		m_LayersInsert = m_Layers.emplace(m_LayersInsert, _layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayersInsertIndex, _layer);
+		m_LayersInsertIndex++;
 		_layer->OnAttach();
 	}
 
@@ -32,7 +32,7 @@ namespace Engine
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
-			m_LayersInsert--;
+			m_LayersInsertIndex--;
 		}
 	}
 
