@@ -14,7 +14,8 @@ namespace Engine {
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
 		KeyEvent(int keycode)
-			: m_KeyCode(keycode) {}
+			: m_KeyCode(keycode) {
+		}
 
 		int m_KeyCode;
 	};
@@ -23,7 +24,8 @@ namespace Engine {
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
-			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+			: KeyEvent(keycode), m_RepeatCount(repeatCount) {
+		}
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
 
@@ -43,7 +45,8 @@ namespace Engine {
 	{
 	public:
 		KeyReleasedEvent(int keycode)
-			: KeyEvent(keycode) {}
+			: KeyEvent(keycode) {
+		}
 
 		std::string ToString() const override
 		{
@@ -53,5 +56,22 @@ namespace Engine {
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
+	};
+
+	class ENGINE_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keycode)
+			: KeyEvent(keycode) {
+		}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypeEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
 	};
 }
