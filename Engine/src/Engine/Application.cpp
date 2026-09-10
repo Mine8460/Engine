@@ -3,7 +3,7 @@
 
 #include "Logger.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Engine
 {
@@ -21,10 +21,14 @@ namespace Engine
 
 	void Application::Run()
 	{
-		while (m_running)
+		while (m_Running)
 		{
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
+
 			m_Window->OnUpdate();
 		}
 	}
@@ -33,11 +37,30 @@ namespace Engine
 	{
 		EventDispatcher dispatcher(_e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(_e);
+			if (_e.Handled)
+			{
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer(Layer* _layer)
+	{
+		m_LayerStack.PushLayer(_layer);
+	}
+
+	void Application::PushOverlay(Layer* _overlay)
+	{
+		m_LayerStack.PushOverlay(_overlay);
 	}
 
 	bool Application::OnWindowClosed(WindowCloseEvent& _e)
 	{
-		m_running = false;
+		m_Running = false;
 
 		return true;
 	}

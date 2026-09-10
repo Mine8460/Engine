@@ -5,6 +5,8 @@
 #include <Engine/Events/KeyEvent.h>
 #include <Engine/Events/MouseEvent.h>
 
+#include <glad/glad.h>
+
 namespace Engine
 {
 	static bool s_GLFWInitialized = false;
@@ -67,6 +69,9 @@ namespace Engine
 
 		m_Window = glfwCreateWindow((int)_props.width, (int)_props.height, m_Data.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
