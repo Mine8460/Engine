@@ -4,7 +4,7 @@
 
 namespace Engine
 {
-	static class ENGINE_API Logger
+	class ENGINE_API Logger
 	{
 		static Logger* instance;
 	public:

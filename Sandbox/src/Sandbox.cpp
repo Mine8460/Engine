@@ -4,6 +4,7 @@
 
 class ExempleLayer : public Engine::Layer
 {
+public:
 	ExempleLayer() : Layer("Exemple")
 	{
 
@@ -22,7 +23,7 @@ class Sandbox : public Engine::Application
 public:
 	Sandbox(void)
 	{
-
+		PushOverlay(new ExempleLayer());
 	}
 
 	~Sandbox()

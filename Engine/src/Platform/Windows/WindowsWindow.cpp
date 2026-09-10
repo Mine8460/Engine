@@ -34,7 +34,7 @@ namespace Engine
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool _enable)
@@ -58,6 +58,7 @@ namespace Engine
 		m_Data.width = _props.width;
 		m_Data.height = _props.height;
 
+
 		if (!s_GLFWInitialized)
 		{
 			int succes = glfwInit();
@@ -67,10 +68,13 @@ namespace Engine
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)_props.width, (int)_props.height, m_Data.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		m_Window = glfwCreateWindow((int)_props.width, (int)_props.height, m_Data.title.c_str(), nullptr, nullptr);
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
+		
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Window.h>
+#include <Platform/OpenGL/OpenGLContext.h>
 
 #include <GLFW/glfw3.h>
 
@@ -28,6 +29,7 @@ namespace Engine
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window = nullptr;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
