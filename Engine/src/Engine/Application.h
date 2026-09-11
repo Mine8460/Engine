@@ -7,6 +7,8 @@
 
 #include "ImGui/ImGuiLayer.h"
 
+#include <Engine/Core/Timestep.h>
+
 namespace Engine
 {
 	class ENGINE_API Application
@@ -26,14 +28,13 @@ namespace Engine
 		inline static Application& Get() { return *s_Instance;  }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& _e);
-
+	private:
 		static Application* s_Instance;
-
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-
-		std::unique_ptr<Window> m_Window;
+		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+
+		float m_LastFrameTime = 0.0f;
 
 		LayerStack m_LayerStack;
 	};

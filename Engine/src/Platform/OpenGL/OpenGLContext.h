@@ -15,6 +15,5 @@ namespace Engine
 	private:
 		GLFWwindow* m_WindowHandle = nullptr;
 	};
-
 }
 
