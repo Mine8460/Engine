@@ -11,6 +11,11 @@ namespace Engine
 		RenderCommand::Init();
 	}
 
+	void Renderer::OnWindowResize(uint32_t _w, uint32_t _h)
+	{
+		RenderCommand::SetViewport(0, 0, _w, _h);
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& _cam)
 	{
 		s_SceneData->ViewProjectionMatrix = _cam.GetViewProjectionMatrix();

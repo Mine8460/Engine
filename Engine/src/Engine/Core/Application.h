@@ -2,10 +2,10 @@
 
 #include "Core.h"
 #include "Window.h"
-#include "Events/ApplicationEvent.h"
+#include <Engine/Events/ApplicationEvent.h>
 #include "LayerStack.h"
 
-#include "ImGui/ImGuiLayer.h"
+#include <Engine/ImGui/ImGuiLayer.h>
 
 #include <Engine/Core/Timestep.h>
 
@@ -28,11 +28,13 @@ namespace Engine
 		inline static Application& Get() { return *s_Instance;  }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& _e);
+		bool OnWindowResize(WindowResizeEvent& _e);
 	private:
 		static Application* s_Instance;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minized = false;
 
 		float m_LastFrameTime = 0.0f;
 

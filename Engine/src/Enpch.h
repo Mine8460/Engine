@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include <Engine/Logger.h>
+#include <Engine/Core/Logger.h>
 
 #ifdef ENGINE_PLATFORM_WINDOWS
 	#include <Windows.h>

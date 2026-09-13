@@ -2,7 +2,7 @@
 
 #include "RenderCommand.h"
 
-#include "OrthographicCamera.h"
+#include "Camera/OrthographicCamera.h"
 #include "Shader.h"
 
 namespace Engine
@@ -12,6 +12,8 @@ namespace Engine
 	{
 	public:
 		static void Init();
+		static void OnWindowResize(uint32_t _w, uint32_t _h);
+
 		static void BeginScene(OrthographicCamera& _cam); // TODO
 		static void EndScene();
 		static void Submit(const Ref<VertexArray>& _VA, const Ref<Shader>& _shader, const glm::mat4& _transform = glm::mat4(1.0f));
