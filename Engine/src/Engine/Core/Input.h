@@ -6,7 +6,7 @@
 
 namespace Engine
 {
-	class ENGINE_API Input
+	class Input
 	{
 	public:
 		inline static bool IsKeyPressed(int _key) { return s_Instance->IsKeyPressedImpl(_key); };
