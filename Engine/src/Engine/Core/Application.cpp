@@ -55,6 +55,11 @@ namespace Engine
 		}
 	}
 
+	void Application::Close(void)
+	{
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& _e)
 	{
 		EventDispatcher dispatcher(_e);

@@ -7,6 +7,8 @@
   </Configurations>
   <Project Path="Engine\Engine.vcxproj" Id="DBC7D3B0-C769-FE86-B024-12DB9C6585D7">
   </Project>
+  <Project Path="Engine-Editor\Engine-Editor.vcxproj" Id="2FC77C9E-9B87-F8D4-64C2-4152D0413DB1" DefaultStartup="true">
+  </Project>
   <Project Path="Engine\vendor\GLAD\GLAD.vcxproj" Id="5D4A857C-4981-860D-F26D-6C10DE83020F">
   </Project>
   <Project Path="Engine\vendor\GLFW\GLFW.vcxproj" Id="154B857C-0182-860D-AA6E-6C109684020F">

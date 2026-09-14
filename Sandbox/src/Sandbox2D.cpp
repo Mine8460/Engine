@@ -40,25 +40,28 @@ private:
 };
 
 
-Sandbox2D::Sandbox2D() : Layer("Sandbox2D")
+EditorLayer::EditorLayer() : Layer("Sandbox2D")
 {
 	m_CameraController = std::make_shared<Engine::OrthographicCameraController>(1280.0f / 720.0f, true);
 }
 
-void Sandbox2D::OnAttach()
+void EditorLayer::OnAttach()
 {
 	m_Texture = Engine::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_AlphaTexture = Engine::Texture2D::Create("assets/textures/AlphaCheckerboard.png");
 	m_SpriteSheet = Engine::Texture2D::Create("assets/game/Spritesheet.png");
 	m_Sprites = Engine::SubTexture2D::CreateAllSpriteSheet(m_SpriteSheet, { 64.f,64.f });
 
+    Engine::FrameBufferSpecification spec;
+    spec.Width = 1280;
+    spec.Height = 720;
 }
 
-void Sandbox2D::OnDetach()
+void EditorLayer::OnDetach()
 {
 }
 
-void Sandbox2D::OnUpdate(Engine::Timestep _timestep)
+void EditorLayer::OnUpdate(Engine::Timestep _timestep)
 {
 	PROFILE_FUNCTION("Sandbox2D::OnUpdate");
 	// Update
@@ -74,48 +77,48 @@ void Sandbox2D::OnUpdate(Engine::Timestep _timestep)
 
 
 		PROFILE_FUNCTION("Sandbox2D::OnRender");
-
 		Engine::RenderCommand::Clear(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 		Engine::Renderer2D::BeginScene(m_CameraController->GetCamera());
 
 		Engine::Renderer2D::DrawQuad({ 0.f,0.f }, { 0.9f, 0.9f }, m_Sprites[spriteToUse], glm::vec4(1.0f), 1.f);
+		Engine::Renderer2D::DrawQuad({ 1.f,0.f }, { 0.9f, 0.9f }, m_Texture, glm::vec4(1.0f), 1.f);
 
 		Engine::Renderer2D::EndScene();
 	}
 }
 
-void Sandbox2D::OnImGuiRender()
+void EditorLayer::OnImGuiRender()
 {
-	ImGui::Begin("Settings");
+    ImGui::Begin("Settings");
 
-	ImGui::DragInt("Sprite", &spriteToUse, 1.0, 1, m_Sprites.size() - 2);
+    ImGui::DragInt("Sprite", &spriteToUse, 1.0, 1, m_Sprites.size() - 2);
 
-	ImGui::End();
-	ImGui::Begin("Profiling");
+    ImGui::End();
+    ImGui::Begin("Profiling");
 
-	Engine::Renderer2D::Statistics stats = Engine::Renderer2D::GetStats();
+    Engine::Renderer2D::Statistics stats = Engine::Renderer2D::GetStats();
 
-	ImGui::Text("Renderer2D Stats:");
-	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-	ImGui::Text("Quads: %d", stats.QuadCount);
-	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-	ImGui::Text("");
+    ImGui::Text("Renderer2D Stats:");
+    ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+    ImGui::Text("Quads: %d", stats.QuadCount);
+    ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+    ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+    ImGui::Text("");
 
-	for (ProfileResult& result : m_ProfileResults)
-	{
-		char label[75];
-		strcpy(label, "  %.3fms ");
-		strcat(label, result.Name);
-		ImGui::Text(label, result.Time);
-	}
+    for (ProfileResult& result : m_ProfileResults)
+    {
+        char label[75];
+        strcpy(label, "  %.3fms ");
+        strcat(label, result.Name);
+        ImGui::Text(label, result.Time);
+    }
 
-	m_ProfileResults.clear();
+    m_ProfileResults.clear();
 
-	ImGui::End();
+    ImGui::End();
 }
 
-void Sandbox2D::OnEvent(Engine::Event& _e)
+void EditorLayer::OnEvent(Engine::Event& _e)
 {
 	m_CameraController->OnEvent(_e);
 }

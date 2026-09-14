@@ -3,10 +3,10 @@
 #include <Engine.h>
 #include <chrono>
 
-class Sandbox2D : public Engine::Layer
+class EditorLayer : public Engine::Layer
 {
 public:
-	Sandbox2D();
+	EditorLayer();
 
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
@@ -22,7 +22,7 @@ private:
 	Engine::Ref<Engine::Texture2D> m_SpriteSheet;
 	std::vector<Engine::Ref<Engine::SubTexture2D>> m_Sprites;
 
-	int spriteToUse = 0;
+	int spriteToUse = 1;
 
 	glm::vec4 m_FlatColor = { 0.2f, 0.3f, 1.0f, 1.0f };
 

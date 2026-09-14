@@ -31,7 +31,7 @@ namespace Engine
 	}
 
 	OrthographicCameraController::OrthographicCameraController(float _aspectration, bool _rotation)
-		: m_AspectRatio(_aspectration), m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio* m_ZoomLevel, m_ZoomLevel, -m_ZoomLevel), m_Rotation(_rotation)
+		: m_AspectRatio(_aspectration), m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio* m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel), m_Rotation(_rotation)
 	{
 		m_CameraPosition = glm::vec3(1.0f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, m_ZoomLevel, -m_ZoomLevel);

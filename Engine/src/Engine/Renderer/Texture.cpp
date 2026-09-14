@@ -12,6 +12,8 @@ namespace Engine
 		{
 		case RendererAPI::API::None: return nullptr;
 		case RendererAPI::API::OpenGL: return  std::make_shared<OpenGLTexture2D>(_w, _h);
+		case RendererAPI::API::Vulkan: return nullptr;
+		case RendererAPI::API::Direct3D: return nullptr;
 		}
 		return nullptr;
 	}
@@ -21,6 +23,8 @@ namespace Engine
 		{
 		case RendererAPI::API::None: return nullptr;
 		case RendererAPI::API::OpenGL: return  std::make_shared<OpenGLTexture2D>(_path);
+		case RendererAPI::API::Vulkan: return nullptr;
+		case RendererAPI::API::Direct3D: return nullptr;
 		}
 		return nullptr;
 	}

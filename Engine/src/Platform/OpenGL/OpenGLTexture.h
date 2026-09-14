@@ -11,6 +11,7 @@ namespace Engine
 		OpenGLTexture2D(const std::string& _path);
 		OpenGLTexture2D(uint32_t _w, uint32_t _h);
 		virtual ~OpenGLTexture2D();
+		virtual uint32_t GetRendererID() const { return m_RendererID; };
 
 		virtual void SetData(void* _data, uint32_t _size) override;
 

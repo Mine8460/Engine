@@ -4,15 +4,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-class Sandbox : public Engine::Application
+class EngineEditor : public Engine::Application
 {
 public:
-	Sandbox(void)
+	EngineEditor(void)
 	{
-		PushLayer(new Sandbox2D());
+		PushLayer(new EditorLayer());
 	}
 
-	~Sandbox()
+	~EngineEditor()
 	{
 		
 	}
@@ -20,5 +20,5 @@ public:
 
 Engine::Application* Engine::CreateApplication()
 {
-	return new Sandbox;
+	return new EngineEditor;
 }
