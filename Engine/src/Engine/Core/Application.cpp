@@ -29,6 +29,7 @@ namespace Engine
 
 	Application::~Application(void)
 	{
+		Renderer::Shutdown();
 	}
 
 	void Application::Run()

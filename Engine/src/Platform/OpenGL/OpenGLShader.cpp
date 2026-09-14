@@ -72,6 +72,12 @@ namespace Engine
 		glUniform1i(location, _values);
 	}
 
+	void OpenGLShader::UploadUniformIntArray(const std::string& _name, int* _values, uint32_t _count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, _name.c_str());
+		glUniform1iv(location, _count, _values);
+	}
+
 	void OpenGLShader::UploadUniformFloat(const std::string& _name, float _values)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, _name.c_str());
@@ -152,7 +158,7 @@ namespace Engine
 			const GLchar* sourceCStr = (const GLchar*)source.c_str();
 			glShaderSource(shader, 1, &sourceCStr, 0);
 
-			// Compile the vertex shader
+			// Compile the vertex FlatColorShader
 			glCompileShader(shader);
 
 			GLint isCompiled = 0;
@@ -166,7 +172,7 @@ namespace Engine
 				std::vector<GLchar> infoLog(maxLength);
 				glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
 
-				// We don't need the shader anymore.
+				// We don't need the FlatColorShader anymore.
 				glDeleteShader(shader);
 
 				ENGINE_CORE_ERROR("Shader compilation failure !");

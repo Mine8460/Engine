@@ -7,6 +7,13 @@ namespace Engine
 {
 	// ---------- VERTEX BUFFER ---------------
 
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t _size)
+	{
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferData(GL_ARRAY_BUFFER, _size, nullptr, GL_DYNAMIC_DRAW);
+	}
+
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* _vertices, uint32_t _size)
 	{
 		glCreateBuffers(1, &m_RendererID);
@@ -27,6 +34,12 @@ namespace Engine
 	void OpenGLVertexBuffer::Unbind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	void OpenGLVertexBuffer::SetData(const void* _data, uint32_t _size)
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, _size, _data);
 	}
 
 	// ---------- INDEX BUFFER ---------------

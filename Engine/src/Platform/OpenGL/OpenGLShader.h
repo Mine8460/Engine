@@ -21,6 +21,7 @@ namespace Engine
 		void UploadUniformMat3(const std::string& _name, const glm::mat3& _mat);
 		void UploadUniformMat4(const std::string& _name, const glm::mat4& _mat);
 		void UploadUniformInt(const std::string& _name, int _values);
+		void UploadUniformIntArray(const std::string& _name, int* _values, uint32_t _count);
 		void UploadUniformFloat(const std::string& _name, float _values);
 		void UploadUniformFloat2(const std::string& _name, const glm::vec2& _values);
 		void UploadUniformFloat3(const std::string& _name, const glm::vec3& _values);

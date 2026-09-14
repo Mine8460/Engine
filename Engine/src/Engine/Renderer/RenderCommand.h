@@ -19,9 +19,9 @@ namespace Engine
 		{
 			s_API->Clear(_color);
 		}
-		inline static void DrawIndexed(const Ref<VertexArray>& _VA)
+		inline static void DrawIndexed(const Ref<VertexArray>& _VA, uint32_t _iCount = 0)
 		{
-			s_API->DrawIndexed(_VA);
+			s_API->DrawIndexed(_VA, _iCount);
 		}
 	private:
 		static RendererAPI* s_API;

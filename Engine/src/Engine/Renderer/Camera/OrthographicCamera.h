@@ -38,8 +38,8 @@ namespace Engine
 
 		bool m_Rotation;
 
-		glm::vec3 m_CameraPosition;
-		float m_CameraSpeed = 1.f;
+		glm::vec3 m_CameraPosition = glm::vec3(1.0f);
+		float m_CameraSpeed = 1.0f;
 
 		float m_CameraRotation = 0.f;
 		float m_CameraRotationSpeed = 90.f;

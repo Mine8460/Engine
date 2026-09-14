@@ -1,5 +1,6 @@
 #include <Enpch.h>
 #include "Renderer.h"
+#include "Renderer2D.h"
 #include <Platform/OpenGL/OpenGLShader.h>
 
 namespace Engine
@@ -9,6 +10,12 @@ namespace Engine
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t _w, uint32_t _h)

@@ -6,12 +6,12 @@
 
 namespace Engine
 {
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None: return nullptr;
-		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
 		case RendererAPI::API::Direct3D: return nullptr;
 		case RendererAPI::API::Vulkan: return nullptr;
 		default:
