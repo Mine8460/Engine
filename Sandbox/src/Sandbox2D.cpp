@@ -49,6 +49,9 @@ void Sandbox2D::OnAttach()
 {
 	m_Texture = Engine::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_AlphaTexture = Engine::Texture2D::Create("assets/textures/AlphaCheckerboard.png");
+	m_SpriteSheet = Engine::Texture2D::Create("assets/game/Spritesheet.png");
+	m_Sprites = Engine::SubTexture2D::CreateAllSpriteSheet(m_SpriteSheet, { 64.f,64.f });
+
 }
 
 void Sandbox2D::OnDetach()
@@ -60,26 +63,22 @@ void Sandbox2D::OnUpdate(Engine::Timestep _timestep)
 	PROFILE_FUNCTION("Sandbox2D::OnUpdate");
 	// Update
 	m_CameraController->OnUpdate(_timestep);
+
+	// Statistics
+	Engine::Renderer2D::ResetStats();
 	// Render
 	{
+		static float rotation = 0.0f;
+		rotation += _timestep.GetSeconds() * 50.0f;
+
+
+
 		PROFILE_FUNCTION("Sandbox2D::OnRender");
 
 		Engine::RenderCommand::Clear(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 		Engine::Renderer2D::BeginScene(m_CameraController->GetCamera());
 
-		glm::vec4 color;
-		for (unsigned int x = 0; x < 32; x++)
-		{
-			for (unsigned int y = 0; y < 32; y++)
-			{
-				glm::vec2 pos = { x - 16.f, y - 16.f };
-
-				if (x % 2 == 0 || y % 2 == 0)
-					Engine::Renderer2D::DrawQuad(pos, { 0.9f, 0.9f }, m_Texture, glm::vec4(1.0f), 1.f);
-				else
-					Engine::Renderer2D::DrawQuad(pos, { 0.9f, 0.9f }, m_AlphaTexture, glm::vec4(1.0f), 10.f);
-			}
-		}
+		Engine::Renderer2D::DrawQuad({ 0.f,0.f }, { 0.9f, 0.9f }, m_Sprites[spriteToUse], glm::vec4(1.0f), 1.f);
 
 		Engine::Renderer2D::EndScene();
 	}
@@ -87,7 +86,21 @@ void Sandbox2D::OnUpdate(Engine::Timestep _timestep)
 
 void Sandbox2D::OnImGuiRender()
 {
+	ImGui::Begin("Settings");
+
+	ImGui::DragInt("Sprite", &spriteToUse, 1.0, 1, m_Sprites.size() - 2);
+
+	ImGui::End();
 	ImGui::Begin("Profiling");
+
+	Engine::Renderer2D::Statistics stats = Engine::Renderer2D::GetStats();
+
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+	ImGui::Text("");
 
 	for (ProfileResult& result : m_ProfileResults)
 	{

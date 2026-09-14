@@ -19,6 +19,10 @@ private:
 
 	Engine::Ref<Engine::Texture2D> m_Texture;
 	Engine::Ref<Engine::Texture2D> m_AlphaTexture;
+	Engine::Ref<Engine::Texture2D> m_SpriteSheet;
+	std::vector<Engine::Ref<Engine::SubTexture2D>> m_Sprites;
+
+	int spriteToUse = 0;
 
 	glm::vec4 m_FlatColor = { 0.2f, 0.3f, 1.0f, 1.0f };
 
